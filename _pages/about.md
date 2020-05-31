@@ -12,10 +12,10 @@ classes: wide
 
 ## Devansh Dhrafani
 
-I am a fourth-year Masters student at BITS Pilani, Hyderabad Campus pursuing M.Sc. Physics 
+I am a fourth-year Masters student at BITS Pilani, Hyderabad Campus pursuing an integrated dual degree in M.Sc. Physics 
 and B.E. Mechanical Engineering (minor in Robotics and Automation). I am extremely passionate 
-about building robots and programming them to move and interact with the world. My field of 
-interest is Motion Planning of Legged robots. 
+about building robots and programming them to move and interact with the world.
 {: .text-justify}
 
 [CV](https://drive.google.com/file/d/1kQGqNtWd-E68a7_NmAyvFbpLSGumFxVa/view?usp=sharing){: .btn .btn--primary}
+
