@@ -97,7 +97,7 @@ author:
   avatar           : "/assets/images/bio-pic.jpg"
   bio              : "4th year Masters student at BITS Pilani, Hyderabad Campus. Extremely passionate about building robots."
   location         : "Hyderabad, India"
-  email            : "f20171569@hyderabad.bits-pilani.ac.in"
+  email            : 
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"

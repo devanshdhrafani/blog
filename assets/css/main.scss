@@ -6,3 +6,40 @@
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+
+.rightAllign {
+    width: 320px;
+    height: 480px;
+    padding-left: 5%;
+    float: right;
+}
+
+.leftAllign {
+    width: 320px;
+    height: 480px;
+    float: left;
+    padding-right: 5%;
+
+}
+
+.centreAllign {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+    float: none!important;
+  }
+
+.btn {
+  background-color: rgb(20, 18, 18);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+    
+}
