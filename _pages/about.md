@@ -6,8 +6,6 @@ author_profile: false
 classes: wide
 ---
 
-<link rel="stylesheet" href="/assets/css/styles.css">
-
 ![Devansh Dhrafani](../assets/images/about-pic.jpg){: .aboutImage}
 
 <br /> 
