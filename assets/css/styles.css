@@ -1,0 +1,143 @@
+body{
+    margin: 0px;
+    /* background-color: #1a1a1d; */
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+
+.link-wrapper {
+    height: 22px;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.5s
+}
+
+.link-wrapper a{
+    color: whitesmoke;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+/* .link-wrapper:hover {
+    border-bottom: 1px solid whitesmoke;
+    border-top: 1px solid whitesmoke;
+} */
+
+.link-wrapper a:hover {
+    /* color: #c3073f; */
+    color: #1a1a1d;
+}
+
+
+/* Content styling */
+
+.content {
+    animation: fadeInAnimation ease 0.5s; 
+    animation-iteration-count: 1; 
+    animation-fill-mode: forwards;
+}
+
+.home-content{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+.home-text {
+    padding-top: 10px;
+    padding-right: 30px;
+    padding-left: 300px;
+    padding-bottom: 30px;
+    text-decoration: none;
+    color: black;
+    justify-content: space-evenly;
+    font-family: 'Prompt', sans-serif;
+    font-size: x-large;
+     
+}
+
+.email_id {
+
+    text-decoration: underline;
+    color: black;
+
+}
+
+.project-block {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    background: black;
+    padding: 2%;
+    border-radius: 25px;
+    background-image: linear-gradient(to top left, rgb(196, 207, 207), rgb(228, 241, 241) )
+}
+
+.project-text > p{
+    text-align: left;
+    font-size: x-large;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+}
+
+.project-img {
+    display: grid;
+    justify-content: center;
+    
+}
+
+.img-project {
+    width: 300px;
+    height: 300px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 2px;
+    
+}
+
+#CV {
+    font-size: large;
+    background: black;
+    width: 50px;
+    color: black;
+    text-decoration: none;
+    height: auto;
+    text-align: center;
+    padding: 1%;
+    border-radius: 5%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.CV_button_link {
+    color:black;
+    text-decoration: none;
+}
+
+#home-pic {
+    width: 320px;
+    height: 480px;
+    border-radius: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.home-image {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.image-text{
+    display: flex;
+    flex-direction: row;
+    color: black;
+    font-family: 'Prompt', sans-serif;
+    justify-content: left;
+    padding-left: 5%;
+}
+
+@keyframes fadeInAnimation { 
+    0% { 
+        opacity: 0; 
+    } 
+    100% { 
+        opacity: 1; 
+     } 
+} 

@@ -11,7 +11,7 @@
 # https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
 
 # theme                  : "minimal-mistakes-jekyll"
-# remote_theme           : "mmistakes/minimal-mistakes"
+remote_theme             : "mmistakes/minimal-mistakes"
 minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
@@ -95,9 +95,7 @@ analytics:
 author:
   name             : "Devansh Dhrafani"
   avatar           : "/assets/images/bio-pic.jpg"
-  bio              : "I am a fourth-year Masters student at BITS Pilani, Hyderabad Campus pursuing M.Sc. 
-                       Physics and B.E. Mechanical Engineering (minor in Robotics and Automation). I am extremely 
-                       passionate about building robots and programming them to move and interact with the world."
+  bio              : "4th year Masters student at BITS Pilani, Hyderabad Campus. Extremely passionate about building robots."
   location         : "Hyderabad, India"
   email            : "f20171569@hyderabad.bits-pilani.ac.in"
   links:
@@ -287,5 +285,5 @@ defaults:
       path: ""
       type: pages
     values: 
-      layout: single
+      layout: default
       author_profile: true  
