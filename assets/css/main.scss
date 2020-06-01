@@ -17,18 +17,24 @@
 }
 
 .rightAllign {
-    width: 320px;
-    height: 400px;
+    width: 500px;
+    height: 250px;
     padding-left: 5%;
     float: right;
 }
 
 .leftAllign {
-    width: 320px;
-    height: 400px;
+    width: 350px;
+    height: 310px;
     float: left;
     padding-right: 5%;
+}
 
+.humanoid {
+    width: 325px;
+    height: 350px;
+    float: right;
+    padding-left: 5%;
 }
 
 .centreAllign {

@@ -5,22 +5,34 @@ permalink: /projects/
 author_profile: false
 classes: wide
 ---
-
-## Project 1
-![Project Image](../assets/images/Robots-Square.jpg){: .rightAllign}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac magna urna. Phasellus feugiat lorem et pharetra consectetur. Aenean ac elit eget ex imperdiet fermentum quis eu nisi. Etiam vitae maximus lectus, ut accumsan ante. Pellentesque vitae massa faucibus, luctus ante in, rhoncus quam. Curabitur neque lectus, commodo quis tristique sed, scelerisque id ligula. Nullam rutrum, ligula quis maximus tempor, dolor dui placerat augue, quis
-{: .text-justify}
-
-[View Project](http://www.google.com){: .btn .btn--inverse}
-
-<br /> 
 <br /> 
 
-## Project 2
+![diff_drive_bot ](../assets/images/diffdrivebot.png){: .rightAllign}
+## SLAM and Autonomous Navigation of Differential Drive robot
 
-![Project Image](../assets/images/Robots-Square.jpg){: .leftAllign}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac magna urna. Phasellus feugiat lorem et pharetra consectetur. Aenean ac elit eget ex imperdiet fermentum quis eu nisi. Etiam vitae maximus lectus, ut accumsan ante. Pellentesque vitae massa faucibus, luctus ante in, rhoncus quam. Curabitur neque lectus, commodo quis tristique sed, scelerisque id ligula. Nullam rutrum, ligula quis maximus tempor, dolor dui placerat augue, quis
+ROS package that implements SLAM on a 2 wheeled differential drive robot to map an unknown environment. A joystick is used to teleoperate the robot which is simulated in the Gazebo environment. The map generated is then used for autonomous navigation using the ROS Navigation stack. 
 {: .text-justify}
 
-[View Project](http://www.google.com){: .btn .btn--inverse}
+[View Project](https://github.com/YugAjmera/ALFA){: .btn .btn--inverse}
+
+<br /> 
+
+![ALFA](../assets/images/aptri.jpg){: .leftAllign}
+## ALFA - APTRI Labs Floor Assistant 
+
+Summer internship at APTRI - Adani Power, Ahmedabad. Developed ALFA - An open-source floor-assistant robot, that can be controlled over the internet. Designed CAD Model, fabricated, and tested the robot. Worked on industrial delta-type 3D Printer for fabrication of Motor Mounts, Support rods and other mounts. 
+{: .text-justify}
+
+[View Project](https://github.com/YugAjmera/ALFA){: .btn .btn--inverse}
+
+<br /> 
+
+
+![Humanoid](../assets/images/dextroid.jpg){: .humanoid}
+## Dextroid -The Humanoid 
+
+Dextroid is BITS Pilani, Hyderabad Campus's humanoid project aimed at quick developement with low resources. It has 8 DOFs for the Bipedal walk. Designed the CAD model and wrote the walking algorithm for the robot.
+{: .text-justify}
+
+[View Project](https://technopediabphc.wordpress.com/2017/04/18/the-bipedhumanoid-project-prototype-3/){: .btn .btn--inverse}
+
