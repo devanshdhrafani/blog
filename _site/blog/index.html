@@ -51,7 +51,8 @@
     
       "@type": "Person",
       "name": "Devansh Dhrafani",
-      "url": "http://localhost:4000/"
+      "url": "http://localhost:4000/",
+      "sameAs": ["https://www.facebook.com/devansh.dhrafani"]
     
   }
 </script>
@@ -101,7 +102,7 @@
 
   </head>
 
-  <body class="layout--home">
+  <body class="layout--posts">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -289,12 +290,24 @@
     
 
 
-<h3 class="archive__subtitle">Recent posts</h3>
-
-
-
-
+<ul class="taxonomy__index">
   
+  
+    <li>
+      <a href="#2020">
+        <strong>2020</strong> <span class="taxonomy__count">1</span>
+      </a>
+    </li>
+  
+</ul>
+
+
+
+  <section id="2020" class="taxonomy__section">
+    <h2 class="archive__subtitle">2020</h2>
+    <div class="entries-list">
+      
+        
 
 
 
@@ -303,7 +316,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="/diffdrive/" rel="permalink">diff_drive_bot
+        <a href="/ros/diffdrive/" rel="permalink">diff_drive_bot
 </a>
       
     </h2>
@@ -322,9 +335,10 @@
   </article>
 </div>
 
-
-
-
+      
+    </div>
+    <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+  </section>
 
 
   </div>
@@ -333,13 +347,8 @@
 
     
       <div class="search-content">
-        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
-    <label class="sr-only" for="search">
-      Enter your search term...
-    </label>
-    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
-  </form>
-  <div id="results" class="results"></div></div>
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
 
       </div>
     
@@ -391,11 +400,61 @@
   <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
 
 
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
 
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'UN0706UWHY',
+  apiKey: '802c2b99cbeff6050511958e18e85195',
+  indexName: 'devansh.dhrafani',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
 
-<script src="/assets/js/lunr/lunr.min.js"></script>
-<script src="/assets/js/lunr/lunr-store.js"></script>
-<script src="/assets/js/lunr/lunr-en.js"></script>
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+// Starting the search
+search.start();
+</script>
+
 
 
 

@@ -58,7 +58,7 @@ algolia:
   application_id         : UN0706UWHY # YOUR_APPLICATION_ID
   index_name             : devansh.dhrafani # YOUR_INDEX_NAME
   search_only_api_key    : 802c2b99cbeff6050511958e18e85195 # YOUR_SEARCH_ONLY_API_KEY
-  powered_by             : # true (default), false
+  powered_by             : false # true (default), false
 google:
   search_engine_id       : # YOUR_SEARCH_ENGINE_ID
   instant_search         : # false (default), true
