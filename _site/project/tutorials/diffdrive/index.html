@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>diff_drive_bot - Devansh Dhrafani</title>
-<meta name="description" content="This ROS package implements SLAM and Autonomous Navigation on a custom 2 wheeled differential drive robot ">
+<!-- begin _includes/seo.html --><title>SLAM and Autonomous Navigation of Differential Drive robot - Devansh Dhrafani</title>
+<meta name="description" content="ROS package that implements SLAM and Autonomous Navigation on a custom 2 wheeled Differential Drive robot in Gazebo ">
 
 
   <meta name="author" content="Devansh Dhrafani">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Devansh Dhrafani">
-<meta property="og:title" content="diff_drive_bot">
-<meta property="og:url" content="http://localhost:4000/ros/diffdrive/">
+<meta property="og:title" content="SLAM and Autonomous Navigation of Differential Drive robot">
+<meta property="og:url" content="http://localhost:4000/project/tutorials/diffdrive/">
 
 
-  <meta property="og:description" content="This ROS package implements SLAM and Autonomous Navigation on a custom 2 wheeled differential drive robot ">
+  <meta property="og:description" content="ROS package that implements SLAM and Autonomous Navigation on a custom 2 wheeled Differential Drive robot in Gazebo ">
 
 
 
@@ -42,7 +42,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/ros/diffdrive/">
+<link rel="canonical" href="http://localhost:4000/project/tutorials/diffdrive/">
 
 
 
@@ -104,7 +104,7 @@
 
   </head>
 
-  <body class="layout--single">
+  <body class="layout--single wide">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -287,10 +287,26 @@
 
   <div class="archive">
     
-      <h1 id="page-title" class="page__title">diff_drive_bot</h1>
+      <h1 id="page-title" class="page__title">SLAM and Autonomous Navigation of Differential Drive robot</h1>
     
 
-    <p>Here is the post. Here we should add content.</p>
+    <p class="text-justify">Software simulation in ROS can help you learn about how to make robots “think.” It is a long way to go from a line following bot to a self-driving car!  This makes software development one of the hardest fields to explore for enthusiasts. This is where the Robot Operating System (ROS) comes in. The highly modular nature of ROS facilitates a developer to focus on his domain and use one of the many open-source ROS packages to fill in the gaps.</p>
+
+<p class="text-justify">In this project, I developed a ROS package that implements SLAM and Autonomous Navigation on a custom 2 wheeled Differential Drive robot in Gazebo. Throughout the development of this project, I learnt several new ROS concepts which are essential to understand for any beginner. In this post, I will summarise the steps that I followed (along with relevant links) and hopefully, in the end, you will learn something new.</p>
+
+<p>Bur first, let’s watch the final result:</p>
+
+<!-- Courtesy of embedresponsively.com //-->
+<div class="responsive-video-container">
+
+  <iframe src="https://www.youtube-nocookie.com/embed/jbd2p1llsqA" frameborder="0" allowfullscreen=""></iframe>
+
+</div>
+
+<p>You can find the code <a href="https://github.com/devanshdhrafani/diff_drive_bot" target="_blank">here</a>.</p>
+
+<h2 id="urdf-and-sensors">URDF and Sensors</h2>
+
 <div class="search-searchbar"></div>
         <div class="search-hits"></div></div>
 </div>
@@ -390,7 +406,7 @@ const hitTemplate = function(hit) {
 search.addWidget(
   instantsearch.widgets.searchBox({
     container: '.search-searchbar',
-    poweredBy: true,
+    
     placeholder: 'Enter your search term...'
   })
 );

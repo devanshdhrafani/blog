@@ -72,7 +72,7 @@ naver_site_verification  :
 twitter:
   username               : 
 facebook:
-  username               : &facebook "devansh.dhrafani"
+  username               :
   app_id                 :
   publisher              :
 og_image                 : # Open Graph/Twitter default site image
@@ -82,7 +82,7 @@ social:
   type                   : # Person or Organization (defaults to Person)
   name                   : # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
-      - "https://www.facebook.com/devansh.dhrafani"
+    
 
 # Analytics
 analytics:
