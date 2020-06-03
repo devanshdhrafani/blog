@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>SLAM and Autonomous Navigation of Differential Drive robot - Devansh Dhrafani</title>
+<!-- begin _includes/seo.html --><title>Differential Drive robot (Part 1): URDF, Sensors, Gazebo and Rviz - Devansh Dhrafani</title>
 <meta name="description" content="ROS package that implements SLAM and Autonomous Navigation on a custom 2 wheeled Differential Drive robot in Gazebo ">
 
 
@@ -19,7 +19,7 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Devansh Dhrafani">
-<meta property="og:title" content="SLAM and Autonomous Navigation of Differential Drive robot">
+<meta property="og:title" content="Differential Drive robot (Part 1): URDF, Sensors, Gazebo and Rviz">
 <meta property="og:url" content="http://localhost:4000/project/tutorials/diffdrive/">
 
 
@@ -31,7 +31,7 @@
 
 
 
-  <meta property="article:published_time" content="2020-05-31T00:00:00+05:30">
+  <meta property="article:published_time" content="2020-06-03T00:00:00+05:30">
 
 
 
@@ -53,8 +53,7 @@
     
       "@type": "Person",
       "name": "Devansh Dhrafani",
-      "url": "http://localhost:4000/",
-      "sameAs": ["https://www.facebook.com/devansh.dhrafani"]
+      "url": "http://localhost:4000/"
     
   }
 </script>
@@ -285,12 +284,33 @@
 
 
 
-  <div class="archive">
-    
-      <h1 id="page-title" class="page__title">SLAM and Autonomous Navigation of Differential Drive robot</h1>
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Differential Drive robot (Part 1): URDF, Sensors, Gazebo and Rviz">
+    <meta itemprop="description" content="ROS package that implements SLAM and Autonomous Navigation on a custom 2 wheeled Differential Drive robot in Gazebo">
+    <meta itemprop="datePublished" content="2020-06-03T00:00:00+05:30">
     
 
-    <p class="text-justify">Software simulation in ROS can help you learn about how to make robots “think.” It is a long way to go from a line following bot to a self-driving car!  This makes software development one of the hardest fields to explore for enthusiasts. This is where the Robot Operating System (ROS) comes in. The highly modular nature of ROS facilitates a developer to focus on his domain and use one of the many open-source ROS packages to fill in the gaps.</p>
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Differential Drive robot (Part 1): URDF, Sensors, Gazebo and Rviz
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="text-justify">Software simulation in ROS can help you learn about how to make robots “think.” It is a long way to go from a line following bot to a self-driving car!  This makes software development one of the hardest fields to explore for enthusiasts. This is where the Robot Operating System (ROS) comes in. The highly modular nature of ROS facilitates a developer to focus on their domain and use one of the many open-source ROS packages to fill in the gaps.</p>
 
 <p class="text-justify">In this project, I developed a ROS package that implements SLAM and Autonomous Navigation on a custom 2 wheeled Differential Drive robot in Gazebo. Throughout the development of this project, I learnt several new ROS concepts which are essential to understand for any beginner. In this post, I will summarise the steps that I followed (along with relevant links) and hopefully, in the end, you will learn something new.</p>
 
@@ -307,8 +327,193 @@
 
 <h2 id="urdf-and-sensors">URDF and Sensors</h2>
 
-<div class="search-searchbar"></div>
-        <div class="search-hits"></div></div>
+<p>We will be using Gazebo as a simulation environment for our purposes, so, we need to describe the robot model in a way that Gazebo can understand it. The Unified Robotic Description Format (URDF) comes to our aid here. URDF describes all the physical properties of a robot, like its basic blocks (links), how links move relative to one another (joints), inertial properties of the links, visual appearance in Gazebo, collision properties, etc.</p>
+
+<p>Apart from that, as we are working in a simulation environment, we will need the robot to get sensor data like LIDAR point clouds, camera feed, etc. We also need a way to move the robot in Gazebo. All these are done using Gazebo plugins. You can learn about these plugins and some examples from <a href="http://gazebosim.org/tutorials?tut=ros_gzplugins" target="_blank">here</a>.</p>
+
+<p>So now, let’s look at the URDF for our robot. There are 4 files:</p>
+<ul>
+  <li>mybot.xacro</li>
+  <li>materials.xacro</li>
+  <li>mybot.gazebo</li>
+  <li>macros.xacro</li>
+</ul>
+
+<p>URDF is written in XML. And as you can see, it gets a bit complicated when dealing with many links and joints. To avoid rewriting certain blocks of code, we can use Xacro. Xacro effectively gives us shortcuts to help reduce the overall size of the URDF file which makes it easier to read and maintain. I followed <a href="http://wiki.ros.org/urdf/Tutorials" target="_blank">this tutorial series</a> to learn about URDF and Xacros.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">mybot.xacro</code> file is our main URDF. It specifies all the joints, links, sensors. You can see that we are importing the other files using:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;xacro:include</span> <span class="na">filename=</span><span class="s">"$(find diff_drive_bot)/urdf/mybot.gazebo"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;xacro:include</span> <span class="na">filename=</span><span class="s">"$(find diff_drive_bot)/urdf/materials.xacro"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;xacro:include</span> <span class="na">filename=</span><span class="s">"$(find diff_drive_bot)/urdf/macros.xacro"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+<p>Let’s look at a code snippet from <code class="language-plaintext highlighter-rouge">mybot.xacro</code>:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">'chassis'</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;pose&gt;</span>0 0 0.1 0 0 0<span class="nt">&lt;/pose&gt;</span>
+
+      <span class="nt">&lt;inertial&gt;</span>
+        <span class="nt">&lt;mass</span> <span class="na">value=</span><span class="s">"15.0"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">"0.0 0 0.1"</span> <span class="na">rpy=</span><span class="s">" 0 0 0"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;inertia</span>
+            <span class="na">ixx=</span><span class="s">"0.1"</span> <span class="na">ixy=</span><span class="s">"0"</span> <span class="na">ixz=</span><span class="s">"0"</span>
+            <span class="na">iyy=</span><span class="s">"0.1"</span> <span class="na">iyz=</span><span class="s">"0"</span>
+            <span class="na">izz=</span><span class="s">"0.1"</span>
+        <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/inertial&gt;</span>
+
+      <span class="nt">&lt;collision</span> <span class="na">name=</span><span class="s">'collision'</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;geometry&gt;</span>
+          <span class="nt">&lt;box</span> <span class="na">size=</span><span class="s">".4 .2 .1"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/geometry&gt;</span>
+      <span class="nt">&lt;/collision&gt;</span>
+
+      <span class="nt">&lt;visual</span> <span class="na">name=</span><span class="s">'chassis_visual'</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">"0 0 0"</span> <span class="na">rpy=</span><span class="s">" 0 0 0"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;geometry&gt;</span>
+          <span class="nt">&lt;box</span> <span class="na">size=</span><span class="s">".4 .2 .1"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/geometry&gt;</span>
+      <span class="nt">&lt;/visual&gt;</span>
+  <span class="nt">&lt;/link&gt;</span>
+</code></pre></div></div>
+
+<p>Here, we are defining a link chassis and specifying its visual, inertial and collision properties. 
+To describe the joints between 2 links, we use:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;joint</span> <span class="na">type=</span><span class="s">"continuous"</span> <span class="na">name=</span><span class="s">"left_wheel_hinge"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">"0 0.15 0"</span> <span class="na">rpy=</span><span class="s">"0 0 0"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">"left_wheel"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">"chassis"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">"0 1 0"</span> <span class="na">rpy=</span><span class="s">"0 0 0"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;limit</span> <span class="na">effort=</span><span class="s">"10000"</span> <span class="na">velocity=</span><span class="s">"1000"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;joint_properties</span> <span class="na">damping=</span><span class="s">"1.0"</span> <span class="na">friction=</span><span class="s">"1.0"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/joint&gt;</span>
+</code></pre></div></div>
+
+<p>Here, the joint between <code class="language-plaintext highlighter-rouge">left_wheel</code> and <code class="language-plaintext highlighter-rouge">chassis</code> is called <code class="language-plaintext highlighter-rouge">left_wheel_hinge</code> and is a <strong>continuous</strong> type hinge. Meaning it rotates about its axis with no limits. Learn more about all 6 types of URDF joints <a href="http://wiki.ros.org/urdf/XML/joint" target="_blank">here</a>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">mybot.gazebo</code> file contains the gazebo plugins for the differential drive motion and sensors. The <code class="language-plaintext highlighter-rouge">materials.xacro</code> contains all the colour RGB values that we use in mybot.xacro and mybot.gazebo. Finally, <code class="language-plaintext highlighter-rouge">macros.xacro</code> contains all the macros for mathematical equations used to define the robot.  It’s not being used in this case because we have fixed all the values. But if you were to change the dimensions of your robot, you can use the <code class="language-plaintext highlighter-rouge">macros.xacro</code> file to avoid calculating the other related dimensions.</p>
+
+<h2 id="gazebo-and-rviz">Gazebo and Rviz</h2>
+
+<p><strong>Gazebo</strong> is an open-source 3D robotics simulator. This means that it is essentially a replacement for the “<strong>Real World</strong>”. Developers can test their algorithms on Gazebo first, iron out the bugs and then finally build and implement on a real robot. <strong>Rviz</strong> stands for <strong>ROS visualization</strong>. At any instant, several ROS nodes are publishing and subscribing messages on various topics. Some of these messages are difficult to understand by just reading the values. Rviz helps us visualize the message data. E.g., LIDAR point clouds are displayed as dots in Rviz, making it much more intuitive than seeing thousands of numbers in an array.</p>
+
+<p>Let’s spawn our robot in Gazebo:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>roslaunch diff_drive_bot gazebo.launch 
+</code></pre></div></div>
+
+<p>The <a href="http://wiki.ros.org/roslaunch" target="_blank">ROS launch</a> file <code class="language-plaintext highlighter-rouge">gazebo.launch</code> starts up the ROS core, Gazebo, and spawns our robot in an empty world with the House model as the robot’s environment.</p>
+
+<p><img src="" alt="" />.{}</p>
+
+<p>You can see that LIDAR’s laser bouncing off on the walls and objects of the environment. Now let’s start Rviz:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>roslaunch diff_drive_bot rviz.launch
+</code></pre></div></div>
+<p>This launch file sets the <code class="language-plaintext highlighter-rouge">robot_description</code> parameter to our URDF and publishes the <strong>joint and robot states</strong>. These are essential to publish because otherwise, Rviz won’t know how the robot links transform.</p>
+
+<p><img src="" alt="" />.{}</p>
+
+<p>You can see in Rviz that the LIDAR data published on the <code class="language-plaintext highlighter-rouge">scan</code> topic is visualised as red dots, showing the obstacles and walls in the robot’s path.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#gazebo" class="page__taxonomy-item" rel="tag">gazebo</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#mobile-robot" class="page__taxonomy-item" rel="tag">mobile robot</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#ros" class="page__taxonomy-item" rel="tag">ROS</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#rviz" class="page__taxonomy-item" rel="tag">rviz</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#urdf" class="page__taxonomy-item" rel="tag">URDF</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#project" class="page__taxonomy-item" rel="tag">Project</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#tutorials" class="page__taxonomy-item" rel="tag">Tutorials</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-06-03T00:00:00+05:30">June 3, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Differential+Drive+robot+%28Part+1%29%3A+URDF%2C+Sensors%2C+Gazebo+and+Rviz%20http%3A%2F%2Flocalhost%3A4000%2Fproject%2Ftutorials%2Fdiffdrive%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fproject%2Ftutorials%2Fdiffdrive%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fproject%2Ftutorials%2Fdiffdrive%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+            
+      </div>
+    </div>
+  
 </div>
 
     </div>
