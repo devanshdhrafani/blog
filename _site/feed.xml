@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-06-03T23:20:14+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Devansh Dhrafani</title><subtitle>Robotics Researcher</subtitle><author><name>Devansh Dhrafani</name></author><entry><title type="html">Differential Drive robot (Part 1): URDF, Sensors, Gazebo and Rviz</title><link href="http://localhost:4000/project/tutorials/diffdrive/" rel="alternate" type="text/html" title="Differential Drive robot (Part 1): URDF, Sensors, Gazebo and Rviz" /><published>2020-06-03T00:00:00+05:30</published><updated>2020-06-03T00:00:00+05:30</updated><id>http://localhost:4000/project/tutorials/diffdrive</id><content type="html" xml:base="http://localhost:4000/project/tutorials/diffdrive/">&lt;p class=&quot;text-justify&quot;&gt;Software simulation in ROS can help you learn about how to make robots “think.” It is a long way to go from a line following bot to a self-driving car!  This makes software development one of the hardest fields to explore for enthusiasts. This is where the Robot Operating System (ROS) comes in. The highly modular nature of ROS facilitates a developer to focus on their domain and use one of the many open-source ROS packages to fill in the gaps.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-06-05T00:36:08+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Devansh Dhrafani</title><subtitle>Robotics Researcher</subtitle><author><name>Devansh Dhrafani</name></author><entry><title type="html">Differential Drive robot (Part 1): URDF, Sensors, Gazebo and Rviz</title><link href="http://localhost:4000/project/tutorials/diffdrive/" rel="alternate" type="text/html" title="Differential Drive robot (Part 1): URDF, Sensors, Gazebo and Rviz" /><published>2020-06-03T00:00:00+05:30</published><updated>2020-06-03T00:00:00+05:30</updated><id>http://localhost:4000/project/tutorials/diffdrive</id><content type="html" xml:base="http://localhost:4000/project/tutorials/diffdrive/">&lt;p class=&quot;text-justify&quot;&gt;Software simulation in ROS can help you learn about how to make robots “think.” It is a long way to go from a line following bot to a self-driving car!  This makes software development one of the hardest fields to explore for enthusiasts. This is where the Robot Operating System (ROS) comes in. The highly modular nature of ROS facilitates a developer to focus on their domain and use one of the many open-source ROS packages to fill in the gaps.&lt;/p&gt;
 
-&lt;p class=&quot;text-justify&quot;&gt;In this project, I developed a ROS package that implements SLAM and Autonomous Navigation on a custom 2 wheeled Differential Drive robot in Gazebo. Throughout the development of this project, I learnt several new ROS concepts which are essential to understand for any beginner. In this post, I will summarise the steps that I followed (along with relevant links) and hopefully, in the end, you will learn something new.&lt;/p&gt;
+&lt;p class=&quot;text-justify&quot;&gt;In this project, I developed a ROS package that implements SLAM and Autonomous Navigation on a custom 2 wheeled Differential Drive robot in Gazebo. Throughout the development of this project, I learnt several new ROS concepts which are essential to understand for any beginner. In these posts, I will summarise the steps that I followed (along with relevant links) and hopefully, by the end, you would have learnt something new.&lt;/p&gt;
 
 &lt;p&gt;Bur first, let’s watch the final result:&lt;/p&gt;
 
@@ -11,15 +11,16 @@
 
 &lt;/div&gt;
 
-&lt;p&gt;You can find the code &lt;a href=&quot;https://github.com/devanshdhrafani/diff_drive_bot&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p class=&quot;text-justify&quot;&gt;&lt;br /&gt;
+To follow along, I would suggest that you install the ROS package using the instructions in the GitHub Repo. You can find the same &lt;a href=&quot;https://github.com/devanshdhrafani/diff_drive_bot&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;urdf-and-sensors&quot;&gt;URDF and Sensors&lt;/h2&gt;
 
-&lt;p&gt;We will be using Gazebo as a simulation environment for our purposes, so, we need to describe the robot model in a way that Gazebo can understand it. The Unified Robotic Description Format (URDF) comes to our aid here. URDF describes all the physical properties of a robot, like its basic blocks (links), how links move relative to one another (joints), inertial properties of the links, visual appearance in Gazebo, collision properties, etc.&lt;/p&gt;
+&lt;p class=&quot;text-justify&quot;&gt;We will be using Gazebo as a simulation environment for our purposes, so, we need to describe the robot model in a way that Gazebo can understand it. The &lt;strong&gt;Unified Robotic Description Format (URDF)&lt;/strong&gt; comes to our aid here. URDF describes all the physical properties of a robot, like its basic blocks (links), how links move relative to one another (joints), inertial properties of the links, visual appearance in Gazebo, collision properties, etc.&lt;/p&gt;
 
-&lt;p&gt;Apart from that, as we are working in a simulation environment, we will need the robot to get sensor data like LIDAR point clouds, camera feed, etc. We also need a way to move the robot in Gazebo. All these are done using Gazebo plugins. You can learn about these plugins and some examples from &lt;a href=&quot;http://gazebosim.org/tutorials?tut=ros_gzplugins&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p class=&quot;text-justify&quot;&gt;Apart from that, as we are working in a simulation environment, we will need the robot to get sensor data like LIDAR point clouds, camera feed, etc. We also need a way to move the robot in Gazebo. All these are done using &lt;strong&gt;Gazebo plugins&lt;/strong&gt;. You can learn about these plugins and some examples from &lt;a href=&quot;http://gazebosim.org/tutorials?tut=ros_gzplugins&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;So now, let’s look at the URDF for our robot. There are 4 files:&lt;/p&gt;
+&lt;p&gt;So now, let’s look at the URDF for our robot. There are 4 files located in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/urdf/&lt;/code&gt; folder:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;mybot.xacro&lt;/li&gt;
   &lt;li&gt;materials.xacro&lt;/li&gt;
@@ -27,76 +28,99 @@
   &lt;li&gt;macros.xacro&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;URDF is written in XML. And as you can see, it gets a bit complicated when dealing with many links and joints. To avoid rewriting certain blocks of code, we can use Xacro. Xacro effectively gives us shortcuts to help reduce the overall size of the URDF file which makes it easier to read and maintain. I followed &lt;a href=&quot;http://wiki.ros.org/urdf/Tutorials&quot; target=&quot;_blank&quot;&gt;this tutorial series&lt;/a&gt; to learn about URDF and Xacros.&lt;/p&gt;
+&lt;p class=&quot;text-justify&quot;&gt;URDF is written in XML. And as you can see, it gets a bit complicated when dealing with many links and joints. To avoid rewriting certain blocks of code, we can use &lt;strong&gt;Xacro&lt;/strong&gt;. Xacro effectively gives us shortcuts to help reduce the overall size of the URDF file which makes it easier to read and maintain. I followed &lt;a href=&quot;http://wiki.ros.org/urdf/Tutorials&quot; target=&quot;_blank&quot;&gt;this tutorial series&lt;/a&gt; to learn about URDF and Xacros.&lt;/p&gt;
 
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mybot.xacro&lt;/code&gt; file is our main URDF. It specifies all the joints, links, sensors. You can see that we are importing the other files using:&lt;/p&gt;
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;xacro:include&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;filename=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;$(find diff_drive_bot)/urdf/mybot.gazebo&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;xacro:include&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;filename=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;$(find diff_drive_bot)/urdf/materials.xacro&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;xacro:include&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;filename=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;$(find diff_drive_bot)/urdf/macros.xacro&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;p class=&quot;text-justify&quot;&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mybot.xacro&lt;/code&gt; file is our main URDF. It specifies all the joints, links, sensors. You can see that we are importing the other files using:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;xacro:include&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;filename=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;$(find diff_drive_bot)/urdf/mybot.gazebo&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;xacro:include&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;filename=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;$(find diff_drive_bot)/urdf/materials.xacro&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;xacro:include&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;filename=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;$(find diff_drive_bot)/urdf/macros.xacro&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;Let’s look at a code snippet from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mybot.xacro&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'chassis'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;pose&amp;gt;&lt;/span&gt;0 0 0.1 0 0 0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/pose&amp;gt;&lt;/span&gt;
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'chassis'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;pose&amp;gt;&lt;/span&gt;0 0 0.1 0 0 0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/pose&amp;gt;&lt;/span&gt;
 
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;inertial&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;mass&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;15.0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;origin&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.0 0 0.1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rpy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; 0 0 0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;inertia&lt;/span&gt;
-            &lt;span class=&quot;na&quot;&gt;ixx=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ixy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ixz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;
-            &lt;span class=&quot;na&quot;&gt;iyy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;iyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;
-            &lt;span class=&quot;na&quot;&gt;izz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.1&quot;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/inertial&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;inertial&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;mass&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;15.0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;origin&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.0 0 0.1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rpy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; 0 0 0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;inertia&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;ixx=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ixy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ixz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;iyy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;iyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;izz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/inertial&amp;gt;&lt;/span&gt;
 
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;collision&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'collision'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;geometry&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;box&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;size=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.4 .2 .1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/geometry&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/collision&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;collision&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'collision'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;geometry&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;box&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;size=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.4 .2 .1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/geometry&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/collision&amp;gt;&lt;/span&gt;
 
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;visual&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'chassis_visual'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;origin&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rpy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; 0 0 0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;geometry&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;box&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;size=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.4 .2 .1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/geometry&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/visual&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/link&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;visual&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'chassis_visual'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;origin&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rpy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; 0 0 0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;geometry&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;box&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;size=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.4 .2 .1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/geometry&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/visual&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/link&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Here, we are defining a link chassis and specifying its visual, inertial and collision properties. 
 To describe the joints between 2 links, we use:&lt;/p&gt;
 
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;joint&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;continuous&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;left_wheel_hinge&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;origin&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0.15 0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rpy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;child&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;link=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;left_wheel&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;parent&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;link=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;chassis&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;axis&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 1 0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rpy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;limit&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;effort=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;10000&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;velocity=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1000&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;joint_properties&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;damping=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;friction=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/joint&amp;gt;&lt;/span&gt;
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;joint&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;continuous&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;left_wheel_hinge&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;origin&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0.15 0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rpy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;child&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;link=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;left_wheel&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;parent&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;link=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;chassis&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;axis&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xyz=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 1 0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rpy=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0 0 0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;limit&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;effort=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;10000&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;velocity=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1000&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;joint_properties&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;damping=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;friction=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/joint&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Here, the joint between &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;left_wheel&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chassis&lt;/code&gt; is called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;left_wheel_hinge&lt;/code&gt; and is a &lt;strong&gt;continuous&lt;/strong&gt; type hinge. Meaning it rotates about its axis with no limits. Learn more about all 6 types of URDF joints &lt;a href=&quot;http://wiki.ros.org/urdf/XML/joint&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p class=&quot;text-justify&quot;&gt;Here, the joint between &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;left_wheel&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chassis&lt;/code&gt; is called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;left_wheel_hinge&lt;/code&gt; and is a &lt;strong&gt;continuous&lt;/strong&gt; type hinge. Meaning it rotates about its axis with no limits. Learn more about all 6 types of URDF joints &lt;a href=&quot;http://wiki.ros.org/urdf/XML/joint&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mybot.gazebo&lt;/code&gt; file contains the gazebo plugins for the differential drive motion and sensors. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;materials.xacro&lt;/code&gt; contains all the colour RGB values that we use in mybot.xacro and mybot.gazebo. Finally, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;macros.xacro&lt;/code&gt; contains all the macros for mathematical equations used to define the robot.  It’s not being used in this case because we have fixed all the values. But if you were to change the dimensions of your robot, you can use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;macros.xacro&lt;/code&gt; file to avoid calculating the other related dimensions.&lt;/p&gt;
+&lt;p class=&quot;text-justify&quot;&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mybot.gazebo&lt;/code&gt; file contains the gazebo plugins for the differential drive motion and sensors. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;materials.xacro&lt;/code&gt; contains all the colour RGB values that we use in mybot.xacro and mybot.gazebo. Finally, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;macros.xacro&lt;/code&gt; contains all the macros for mathematical equations used to define the robot.  It’s not being used in this case because we have fixed all the values. But if you were to change the dimensions of your robot, you can use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;macros.xacro&lt;/code&gt; file to avoid calculating the other related dimensions.&lt;/p&gt;
+
+&lt;p class=&quot;text-justify&quot;&gt;Again, to learn how to write URDF and use Xacro, follow &lt;a href=&quot;http://wiki.ros.org/urdf/Tutorials&quot; target=&quot;_blank&quot;&gt;this tutorial series&lt;/a&gt; from where I learnt.&lt;/p&gt;
 
 &lt;h2 id=&quot;gazebo-and-rviz&quot;&gt;Gazebo and Rviz&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;Gazebo&lt;/strong&gt; is an open-source 3D robotics simulator. This means that it is essentially a replacement for the “&lt;strong&gt;Real World&lt;/strong&gt;”. Developers can test their algorithms on Gazebo first, iron out the bugs and then finally build and implement on a real robot. &lt;strong&gt;Rviz&lt;/strong&gt; stands for &lt;strong&gt;ROS visualization&lt;/strong&gt;. At any instant, several ROS nodes are publishing and subscribing messages on various topics. Some of these messages are difficult to understand by just reading the values. Rviz helps us visualize the message data. E.g., LIDAR point clouds are displayed as dots in Rviz, making it much more intuitive than seeing thousands of numbers in an array.&lt;/p&gt;
+&lt;p class=&quot;text-justify&quot;&gt;&lt;strong&gt;Gazebo&lt;/strong&gt; is an open-source 3D robotics simulator. This means that it is essentially a replacement for the “&lt;strong&gt;Real World&lt;/strong&gt;”. Developers can test their algorithms on Gazebo first, iron out the bugs and then finally build and implement on a real robot. &lt;strong&gt;Rviz&lt;/strong&gt; stands for &lt;strong&gt;ROS visualization&lt;/strong&gt;. At any instant, several ROS nodes are publishing and subscribing messages on various topics. Some of these messages are difficult to understand by just reading the values. Rviz helps us visualize the message data. E.g., LIDAR point clouds are displayed as dots in Rviz, making it much more intuitive than seeing thousands of numbers in an array.&lt;/p&gt;
 
 &lt;p&gt;Let’s spawn our robot in Gazebo:&lt;/p&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;roslaunch diff_drive_bot gazebo.launch 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The &lt;a href=&quot;http://wiki.ros.org/roslaunch&quot; target=&quot;_blank&quot;&gt;ROS launch&lt;/a&gt; file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gazebo.launch&lt;/code&gt; starts up the ROS core, Gazebo, and spawns our robot in an empty world with the House model as the robot’s environment.&lt;/p&gt;
+&lt;p class=&quot;text-justify&quot;&gt;The &lt;a href=&quot;http://wiki.ros.org/roslaunch&quot; target=&quot;_blank&quot;&gt;ROS launch&lt;/a&gt; file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gazebo.launch&lt;/code&gt; starts up the ROS core, Gazebo, and spawns our robot in an empty world with the House model as the robot’s environment.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&quot; /&gt;.{}&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/diffdrive/gazebo.png&quot; alt=&quot;Gazebo&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;You can see that LIDAR’s laser bouncing off on the walls and objects of the environment. Now let’s start Rviz:&lt;/p&gt;
+&lt;p&gt;You can see that LIDAR’s laser bouncing off on the walls and objects of the environment. 
+Now let’s start Rviz:&lt;/p&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;roslaunch diff_drive_bot rviz.launch
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;This launch file sets the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;robot_description&lt;/code&gt; parameter to our URDF and publishes the &lt;strong&gt;joint and robot states&lt;/strong&gt;. These are essential to publish because otherwise, Rviz won’t know how the robot links transform.&lt;/p&gt;
+&lt;p class=&quot;text-justify&quot;&gt;This launch file sets the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;robot_description&lt;/code&gt; parameter to our robot URDF and publishes the &lt;strong&gt;joint and robot states&lt;/strong&gt;. These are essential to publish because otherwise, Rviz won’t know how the robot links transform.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&quot; /&gt;.{}&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/diffdrive/rviz.png&quot; alt=&quot;Rviz&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;You can see in Rviz that the LIDAR data published on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scan&lt;/code&gt; topic is visualised as red dots, showing the obstacles and walls in the robot’s path.&lt;/p&gt;</content><author><name>Devansh Dhrafani</name></author><category term="gazebo" /><category term="ROS" /><category term="rviz" /><category term="mobile robot" /><category term="URDF" /><summary type="html">ROS package that implements SLAM and Autonomous Navigation on a custom 2 wheeled Differential Drive robot in Gazebo</summary></entry></feed>
+&lt;p class=&quot;text-justify&quot;&gt;You can see in Rviz that the LIDAR data published on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scan&lt;/code&gt; topic is visualised as red dots, showing the obstacles and walls in the robot’s path.&lt;/p&gt;
+
+&lt;h2 id=&quot;teleoperation&quot;&gt;Teleoperation&lt;/h2&gt;
+
+&lt;p class=&quot;text-justify&quot;&gt;Now that we setup the URDF, Sensors and watched the robot in Gazebo and the sensor data in Rviz, its time to move the robot! For the purpose of this demonstration, I modified the turtlebot3 keyboard teleoperation node to suit our needs. To use that, execute:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rosrun diff_drive_bot keyboard_teleop.py 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p class=&quot;text-justify&quot;&gt;You would now be able to move the robot around in Gazebo. Observe how the Rviz laser scan point cloud also changes as the robot moves around in the environment.&lt;/p&gt;
+
+&lt;p class=&quot;text-justify&quot;&gt;With that, this little tutorial/guide is over. I hope that you learnt something new about URDF, Sensors and how to visualise them in Gazebo and Rviz. If you have any questions/suggestions, feel free to drop them below. In the next post, I will share how I implemented SLAM and the ROS Navigation stack on the above robot.&lt;/p&gt;
+
+&lt;h2 id=&quot;links&quot;&gt;Links&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;GitHub Repo: &lt;a href=&quot;https://github.com/devanshdhrafani/diff_drive_bot&quot; target=&quot;_blank&quot;&gt;link&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;URDF Tutorials: &lt;a href=&quot;http://wiki.ros.org/urdf/Tutorials&quot; target=&quot;_blank&quot;&gt;link&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Gazebo Plugins: &lt;a href=&quot;http://gazebosim.org/tutorials?tut=ros_gzplugins&quot; target=&quot;_blank&quot;&gt;link&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Types of URDF Joints: &lt;a href=&quot;http://wiki.ros.org/urdf/XML/joint&quot; target=&quot;_blank&quot;&gt;link&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;ROS Launch Files: &lt;a href=&quot;http://wiki.ros.org/roslaunch&quot; target=&quot;_blank&quot;&gt;link&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Devansh Dhrafani</name></author><category term="gazebo" /><category term="ROS" /><category term="rviz" /><category term="mobile robot" /><category term="URDF" /><summary type="html">ROS package that implements SLAM and Autonomous Navigation on a custom 2 wheeled Differential Drive robot in Gazebo</summary></entry></feed>
