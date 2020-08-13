@@ -13,7 +13,8 @@ categories:
 #header:
  # image: "/assets/images/diffdrive/header.png"
 excerpt: "ROS package that implements SLAM and Autonomous Navigation on a custom 2 wheeled Differential Drive robot in Gazebo"
-classes: wide
+toc: true
+toc_sticky: true
 ---
 
 Software simulation in ROS can help you learn about how to make robots "think." It is a long way to go from a line following bot to a self-driving car!  This makes software development one of the hardest fields to explore for enthusiasts. This is where the Robot Operating System (ROS) comes in. The highly modular nature of ROS facilitates a developer to focus on their domain and use one of the many open-source ROS packages to fill in the gaps.
