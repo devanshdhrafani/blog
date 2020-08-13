@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Devansh Dhrafani">
 <meta property="og:title" content="Projects">
-<meta property="og:url" content="http://localhost:4000/projects/">
+<meta property="og:url" content="http://localhost:4000/blog/projects/">
 
 
   <meta property="og:description" content="Robotics Researcher ">
@@ -35,7 +35,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/projects/">
+<link rel="canonical" href="http://localhost:4000/blog/projects/">
 
 
 
@@ -46,7 +46,7 @@
     
       "@type": "Person",
       "name": "Devansh Dhrafani",
-      "url": "http://localhost:4000/"
+      "url": "http://localhost:4000/blog/"
     
   }
 </script>
@@ -59,7 +59,7 @@
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Devansh Dhrafani Feed">
+<link href="/blog/feed.xml" type="application/atom+xml" rel="alternate" title="Devansh Dhrafani Feed">
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,7 +69,7 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/blog/assets/css/main.css">
 
 <!--[if IE]>
   <style>
@@ -117,16 +117,16 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         
-        <a class="site-title" href="/">
+        <a class="site-title" href="/blog/">
           Devansh Dhrafani
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/about">About</a>
+              <a href="/blog/about">About</a>
             </li><li class="masthead__menu-item">
-              <a href="/projects/">Projects</a>
+              <a href="/blog/projects/">Projects</a>
             </li><li class="masthead__menu-item">
-              <a href="/blog/">Blog</a>
+              <a href="/blog/blog/">Blog</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -160,7 +160,7 @@
     
     <p><br /></p>
 
-<p><img src="/assets/images/diffdrivebot.png" alt="diff_drive_bot " class="rightAllign" /></p>
+<p><img src="/blog/assets/images/diffdrivebot.png" alt="diff_drive_bot " class="rightAllign" /></p>
 <h2 id="slam-and-autonomous-navigation-of-differential-drive-robot">SLAM and Autonomous Navigation of Differential Drive robot</h2>
 
 <p class="text-justify">ROS package that implements SLAM on a 2 wheeled differential drive robot to map an unknown environment. A joystick is used to teleoperate the robot which is simulated in the Gazebo environment. The map generated is then used for autonomous navigation using the ROS Navigation stack.</p>
@@ -169,7 +169,7 @@
 
 <p><br /></p>
 
-<p><img src="/assets/images/aptri.jpg" alt="ALFA" class="leftAllign" /></p>
+<p><img src="/blog/assets/images/aptri.jpg" alt="ALFA" class="leftAllign" /></p>
 <h2 id="alfa---aptri-labs-floor-assistant">ALFA - APTRI Labs Floor Assistant</h2>
 
 <p class="text-justify">Summer internship at APTRI - Adani Power, Ahmedabad. Developed ALFA - An open-source floor-assistant robot, that can be controlled over the internet. Designed CAD Model, fabricated, and tested the robot. Worked on industrial delta-type 3D Printer for fabrication of Motor Mounts, Support rods and other mounts.</p>
@@ -178,7 +178,7 @@
 
 <p><br /></p>
 
-<p><img src="/assets/images/dextroid.jpg" alt="Humanoid" class="humanoid" /></p>
+<p><img src="/blog/assets/images/dextroid.jpg" alt="Humanoid" class="humanoid" /></p>
 <h2 id="dextroid--the-humanoid">Dextroid -The Humanoid</h2>
 
 <p class="text-justify">Dextroid is BITS Pilani, Hyderabad Campus’s humanoid project aimed at quick developement with low resources. It has 8 DOFs for the Bipedal walk. Designed the CAD model and wrote the walking algorithm for the robot.</p>
@@ -188,7 +188,7 @@
 <p><br /> 
 <br /></p>
 
-<p><img src="/assets/images/mems.png" alt="MEMS" class="volteraImg" /></p>
+<p><img src="/blog/assets/images/mems.png" alt="MEMS" class="volteraImg" /></p>
 <h2 id="microfluidic-electrochemical-sensor-using-3d-ink-extrution-pcb-printer">Microfluidic Electrochemical Sensor using 3D ink extrution PCB printer</h2>
 
 <p class="text-justify">5 month research project at MEMS Lab, BITS Pilani, Hyderabad Campus under the supervision of Dr. Satish K Dubey and Mr J Murli Mohan. Developed a novel method for fabrication of PoC Electrochemical Sensor. The project explored the use of a 3D ink extrution PCB printer to print conductive carbon ink on glass substrate to create a low cost, portable electrochemical sensor for detection of various analytes.</p>
@@ -247,7 +247,7 @@
       
     
 
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    <li><a href="/blog/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
@@ -257,7 +257,7 @@
     </div>
 
     
-  <script src="/assets/js/main.min.js"></script>
+  <script src="/blog/assets/js/main.min.js"></script>
   <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
 
 
@@ -288,7 +288,7 @@ const hitTemplate = function(hit) {
   return `
     <div class="list__item">
       <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <h2 class="archive__item-title" itemprop="headline"><a href="/blog${url}">${title}</a></h2>
         <div class="archive__item-excerpt" itemprop="description">${content}</div>
       </article>
     </div>

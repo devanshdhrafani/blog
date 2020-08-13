@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Devansh Dhrafani">
 <meta property="og:title" content="Differential Drive robot (Part 1): URDF, Sensors, Gazebo and Rviz">
-<meta property="og:url" content="http://localhost:4000/project/tutorials/diffdrive/">
+<meta property="og:url" content="http://localhost:4000/blog/project/tutorials/diffdrive/">
 
 
   <meta property="og:description" content="ROS package that implements SLAM and Autonomous Navigation on a custom 2 wheeled Differential Drive robot in Gazebo ">
@@ -37,7 +37,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/project/tutorials/diffdrive/">
+<link rel="canonical" href="http://localhost:4000/blog/project/tutorials/diffdrive/">
 
 
 
@@ -48,7 +48,7 @@
     
       "@type": "Person",
       "name": "Devansh Dhrafani",
-      "url": "http://localhost:4000/"
+      "url": "http://localhost:4000/blog/"
     
   }
 </script>
@@ -61,7 +61,7 @@
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Devansh Dhrafani Feed">
+<link href="/blog/feed.xml" type="application/atom+xml" rel="alternate" title="Devansh Dhrafani Feed">
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,7 +71,7 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/blog/assets/css/main.css">
 
 <!--[if IE]>
   <style>
@@ -119,16 +119,16 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         
-        <a class="site-title" href="/">
+        <a class="site-title" href="/blog/">
           Devansh Dhrafani
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/about">About</a>
+              <a href="/blog/about">About</a>
             </li><li class="masthead__menu-item">
-              <a href="/projects/">Projects</a>
+              <a href="/blog/projects/">Projects</a>
             </li><li class="masthead__menu-item">
-              <a href="/blog/">Blog</a>
+              <a href="/blog/blog/">Blog</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -165,7 +165,7 @@
   
     <div class="author__avatar">
       
-        <img src="/assets/images/bio-pic.jpg" alt="Devansh Dhrafani" itemprop="image">
+        <img src="/blog/assets/images/bio-pic.jpg" alt="Devansh Dhrafani" itemprop="image">
       
     </div>
   
@@ -464,23 +464,23 @@ Now let’s start Rviz:</p>
     
       
       
-      <a href="/tags/#gazebo" class="page__taxonomy-item" rel="tag">gazebo</a><span class="sep">, </span>
+      <a href="/blog/tags/#gazebo" class="page__taxonomy-item" rel="tag">gazebo</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#mobile-robot" class="page__taxonomy-item" rel="tag">mobile robot</a><span class="sep">, </span>
+      <a href="/blog/tags/#mobile-robot" class="page__taxonomy-item" rel="tag">mobile robot</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#ros" class="page__taxonomy-item" rel="tag">ROS</a><span class="sep">, </span>
+      <a href="/blog/tags/#ros" class="page__taxonomy-item" rel="tag">ROS</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#rviz" class="page__taxonomy-item" rel="tag">rviz</a><span class="sep">, </span>
+      <a href="/blog/tags/#rviz" class="page__taxonomy-item" rel="tag">rviz</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#urdf" class="page__taxonomy-item" rel="tag">URDF</a>
+      <a href="/blog/tags/#urdf" class="page__taxonomy-item" rel="tag">URDF</a>
     
     </span>
   </p>
@@ -501,11 +501,11 @@ Now let’s start Rviz:</p>
     
       
       
-      <a href="/categories/#project" class="page__taxonomy-item" rel="tag">Project</a><span class="sep">, </span>
+      <a href="/blog/categories/#project" class="page__taxonomy-item" rel="tag">Project</a><span class="sep">, </span>
     
       
       
-      <a href="/categories/#tutorials" class="page__taxonomy-item" rel="tag">Tutorials</a>
+      <a href="/blog/categories/#tutorials" class="page__taxonomy-item" rel="tag">Tutorials</a>
     
     </span>
   </p>
@@ -521,11 +521,11 @@ Now let’s start Rviz:</p>
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Differential+Drive+robot+%28Part+1%29%3A+URDF%2C+Sensors%2C+Gazebo+and+Rviz%20http%3A%2F%2Flocalhost%3A4000%2Fproject%2Ftutorials%2Fdiffdrive%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Differential+Drive+robot+%28Part+1%29%3A+URDF%2C+Sensors%2C+Gazebo+and+Rviz%20http%3A%2F%2Flocalhost%3A4000%2Fblog%2Fproject%2Ftutorials%2Fdiffdrive%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fproject%2Ftutorials%2Fdiffdrive%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fblog%2Fproject%2Ftutorials%2Fdiffdrive%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fproject%2Ftutorials%2Fdiffdrive%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fblog%2Fproject%2Ftutorials%2Fdiffdrive%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -591,7 +591,7 @@ Now let’s start Rviz:</p>
       
     
 
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    <li><a href="/blog/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
@@ -601,7 +601,7 @@ Now let’s start Rviz:</p>
     </div>
 
     
-  <script src="/assets/js/main.min.js"></script>
+  <script src="/blog/assets/js/main.min.js"></script>
   <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
 
 
@@ -632,7 +632,7 @@ const hitTemplate = function(hit) {
   return `
     <div class="list__item">
       <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <h2 class="archive__item-title" itemprop="headline"><a href="/blog${url}">${title}</a></h2>
         <div class="archive__item-excerpt" itemprop="description">${content}</div>
       </article>
     </div>
