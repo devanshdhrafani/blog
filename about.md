@@ -24,6 +24,7 @@ titles:
   fr-LU   : *FR
   # @end locale config
 key: page-about
+comment: false
 ---
 
 <img class="image image--lg floating-right img--rounded" src="assets/images/abt-pic2 (2).jpg"/>
