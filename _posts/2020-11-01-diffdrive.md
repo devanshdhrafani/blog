@@ -8,6 +8,8 @@ author: Devansh Dhrafani
 modify_date: 2020-11-01
 sharing: true
 license: false
+comment: true
+key: diffdrive
 excerpt: I developed a ROS package that implements SLAM and Autonomous Navigation on a custom 2 wheeled Differential Drive robot in Gazebo. Throughout the development of this project, I learnt several new ROS concepts which are essential to understand for any beginner. This post summarises the steps that I followed with relevant links for learning the same.
 ---
 
