@@ -1,5 +1,5 @@
 ---
-title: "Mobile Robot (Part 1): URDF, Sensors, Gazebo and Rviz"
+title: "Mobile Robot 1: URDF, Sensors, Gazebo and Rviz"
 date: 2020-11-01
 tags: 
   - ROS
