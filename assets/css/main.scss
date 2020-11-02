@@ -2,88 +2,73 @@
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 
-@charset "utf-8";
+@import
 
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
-@import "minimal-mistakes"; // main partials
+    "skins/{{ site.text_skin | default: site.data.variables.default.text_skin }}",
+    // "skins/chocolate",
+    // "skins/dark",
+    // "skins/default",
+    // "skins/forest",
+    // "skins/ocean",
+    // "skins/orange",
 
-
-.aboutImage {
-    width: 350px;
-    height: 525px;
-    padding-top: 5%;
-    padding-left: 5%;
-    float: right;
-}
-
-.rightAllign {
-    width: 500px;
-    height: 250px;
-    padding-left: 5%;
-    float: right;
-}
-
-.leftAllign {
-    width: 350px;
-    height: 310px;
-    float: left;
-    padding-right: 5%;
-}
-
-.humanoid {
-    width: 325px;
-    height: 350px;
-    float: right;
-    padding-left: 5%;
-}
-
-.centreAllign {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    margin: auto;
-    float: none!important;
-  }
-
-.volteraImg {
-    width: 400px;
-    height: 315px;
-    float: left;
-    padding-right: 5%;
-
-}
-
-/*
-.butn {
-  background-color: rgb(20, 18, 18);
-  border: none;
-  color: whitesmoke;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;    
-}
+    "skins/highlight/{{ site.highlight_theme | default: site.data.variables.default.highlight_theme }}",
+    // "skins/highlight/tomorrow",
+    // "skins/highlight/tomorrow-night",
+    // "skins/highlight/tomorrow-night-eighties",
+    // "skins/highlight/tomorrow-night-blue",
+    // "skins/highlight/tomorrow-night-bright",
 
 
-.CV_button_link {
-    color:black;
-    text-decoration: none;
-    color: white;
-}
+    "common/variables",
+    "common/function",
+    "common/classes",
+    "common/reset",
+    "common/print",
+    "common/components/button",
+    "common/components/image",
+    "common/components/card",
+    "common/components/gallery",
+    "common/components/hero",
+    "common/components/menu",
+    "common/components/modal",
+    "common/components/toc",
+    "common/components/item",
+    "common/components/swiper",
 
-#CV {
-    font-size: large;
-    background: black;
-    width: 60px;
-    color: whitesmoke;
-    text-decoration: none;
-    height: auto;
-    text-align: center;
-    padding: 1%;
-    border-radius: 5%;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-}
-*/
+    "animate/fade-in",
+    "animate/fade-in-down",
+    "animate/fade-in-up",
+
+    "components/main",
+    "components/header",
+    "components/footer",
+    "components/article-list",
+    "components/article-info",
+    "components/article-header",
+    "components/article-content",
+    "components/article-footer",
+    "components/author-links",
+    "components/author-profile",
+    "components/tags",
+    "components/search",
+    "components/lightbox",
+    "components/extensions",
+
+
+    "additional/alert",
+    "additional/tag",
+    "additional/photo-frame",
+
+    "layout/base",
+    "layout/page",
+
+    "layout/article",
+    "layout/articles",
+    "layout/archive",
+    "layout/home",
+    "layout/landing",
+    "layout/404",
+
+    "custom"
+;

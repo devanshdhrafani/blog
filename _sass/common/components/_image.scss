@@ -1,0 +1,28 @@
+.image {
+  max-width: 100%;
+  @extend .image--md;
+}
+.img--rounded{
+    border-radius: 50%;
+}
+
+.image--md {
+  width: map-get($image, width);
+}
+.image--xl {
+  width: map-get($image, width-xl);
+}
+.image--lg {
+  width: map-get($image, width-lg);
+}
+.image--sm {
+  width: map-get($image, width-sm);
+}
+.image--xs {
+  width: map-get($image, width-xs);
+}
+.floating-right {
+  float: right;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
