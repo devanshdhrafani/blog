@@ -38,7 +38,7 @@ author:
   name      : Devansh Dhrafani
   url       : devanshdhrafani.github.io
   avatar    : # path or url of avatar image (square)
-  bio       : Roboticist | Maker | Engineer | Physicist | Tinkerer
+  bio       : Robotics and Machine Learning Enthusiast
   email     : f20171569@hyderabad.bits-pilani.ac.in
   facebook  : # "user_name" the last part of your profile url, e.g. https://www.facebook.com/user_name
   twitter   : # "user_name" the last part of your profile url, e.g. https://twitter.com/user_name
@@ -56,7 +56,7 @@ author:
 ## => GitHub Repository (if the site is hosted by GitHub)
 ##############################
 repository: devanshdhrafani.github.io/blog
-repository_tree: gh-pages
+repository_tree: master
 
 
 ## => Paths
@@ -118,11 +118,11 @@ sharing:
 ## => Comments
 ##############################
 comments:
-  provider: gitalk # false (default), "disqus", "gitalk", "valine", "custom"
+  provider: disqus # false (default), "disqus", "gitalk", "valine", "custom"
 
   ## Disqus
   disqus:
-    shortname:  # the Disqus shortname for the site
+    shortname: devanshd # the Disqus shortname for the site
 
   ## Gitalk
   # please refer to https://github.com/gitalk/gitalk for more info.
