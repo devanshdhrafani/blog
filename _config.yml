@@ -22,7 +22,7 @@ url     :  # the base hostname & protocol for your site e.g. https://www.someone
 baseurl :  # does not include hostname
 title   : Devansh Dhrafani
 description: > # this means to ignore newlines until "Language & timezone"
-  Musings of a Robotics Enthusiast
+  Musings of a Roboticist
 
 
 ## => Language and Timezone
@@ -209,8 +209,6 @@ defaults:
       layout: article
       sharing: true
       license: true
-      aside:
-        toc: true
       show_edit_on_github: false
       show_subscribe: true
       pageview: true

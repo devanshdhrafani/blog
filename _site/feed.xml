@@ -1,5 +1,98 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2020-11-01T22:57:47+05:30</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Devansh Dhrafani</title><subtitle>Your Site Description
-</subtitle><author><name>Devansh Dhrafani</name><email>f20171569@hyderabad.bits-pilani.ac.in</email></author><entry><title type="html">Mobile Robot (Part 1): URDF, Sensors, Gazebo and Rviz</title><link href="http://localhost:4000/blog/2020/11/01/diffdrive.html" rel="alternate" type="text/html" title="Mobile Robot (Part 1): URDF, Sensors, Gazebo and Rviz" /><published>2020-11-01T00:00:00+05:30</published><updated>2020-11-01T00:00:00+05:30</updated><id>http://localhost:4000/blog/2020/11/01/diffdrive</id><content type="html" xml:base="http://localhost:4000/blog/2020/11/01/diffdrive.html">&lt;p&gt;Software simulation in ROS can help you learn about how to make robots “think.” It is a long way to go from a line following bot to a self-driving car!  This makes software development one of the hardest fields to explore for enthusiasts. This is where the Robot Operating System (ROS) comes in. The highly modular nature of ROS facilitates a developer to focus on their domain and use one of the many open-source ROS packages to fill in the gaps.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-08T22:10:15+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Devansh Dhrafani</title><subtitle>Musings of a Roboticist
+</subtitle><author><name>Devansh Dhrafani</name><email>f20171569@hyderabad.bits-pilani.ac.in</email></author><entry><title type="html">SLAM with MIT-Racecar (Gazebo)</title><link href="http://localhost:4000/2021/02/08/racecar1.html" rel="alternate" type="text/html" title="SLAM with MIT-Racecar (Gazebo)" /><published>2021-02-08T00:00:00+05:30</published><updated>2021-02-08T00:00:00+05:30</updated><id>http://localhost:4000/2021/02/08/racecar1</id><content type="html" xml:base="http://localhost:4000/2021/02/08/racecar1.html">&lt;p&gt;For a recent project, I had to map an environment using the &lt;strong&gt;MIT-Racecar&lt;/strong&gt; robot in Gazebo. This is a log of my progress implementing &lt;strong&gt;Simultaneous Localisation and Mapping (SLAM)&lt;/strong&gt; on the MIT-Racecar bot. I encountered some interesting problems, and learnt a few things while solving them. In this short post, I will summarise the steps that I used to solve the problems and get &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gmapping&lt;/code&gt; to run on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;racecar_gazebo&lt;/code&gt; simulator.&lt;/p&gt;
+
+&lt;p&gt;After cloning the &lt;strong&gt;racecar&lt;/strong&gt;&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and &lt;strong&gt;racecar_gazebo&lt;/strong&gt;&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; packages to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/src&lt;/code&gt; directory and building them using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;catkin_make&lt;/code&gt;, I launched the simulation using:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;roslaunch racecar-env racecar_tunnel.launch
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Of course things never work at the first try. I encountered 2 errors which were fixed by installing the following dependencies:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://wiki.ros.org/ackermann_msgs&quot; target=&quot;_blank&quot;&gt;ackermann_msgs&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://wiki.ros.org/effort_controllers&quot; target=&quot;_blank&quot;&gt;effort_controllers&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now running the same environment launched Gazebo and spawned the racecar in the tunnel map.&lt;/p&gt;
+
+&lt;p&gt;To map the environment, I used gmapping. After setting up the launch file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gmapping.launch&lt;/code&gt; and running it, rviz showed the warning: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;No map received&lt;/code&gt;. The terminal showed&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[ WARN] [1612766930.932705394, 1106.617000000]: MessageFilter [target=odom ]: Dropped 100.00% of messages so far. Please turn the [ros.gmapping.message_filter] rosconsole logger to DEBUG for more information.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Clearly, there was some error with the odometry information. A quick&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rosrun tf view_frames
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;revealed that the there was no &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;odom --&amp;gt; base_link&lt;/code&gt; transform that is necessary for gmapping to run properly. Refer &lt;strong&gt;REP 105&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; for the convention.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/racecar1/frames1.png&quot; alt=&quot;TF&quot; class=&quot;border&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There are 2 ways of fixing this error:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Using the &lt;strong&gt;static transform publisher&lt;/strong&gt;&lt;sup id=&quot;fnref:4&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;, a transformation can be created from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;odom --&amp;gt; base_link&lt;/code&gt;. This will work in the case that the robot is fixed with respect to the map. But as I wanted the racecar to explore and map the environment, this approach isn’t viable.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Dynamically publish&lt;/strong&gt; the relationships between &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;odom&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;base_link&lt;/code&gt; frame. Generally, this is done using inputs from on-board sensors like encoders and lidar to estimate the robot’s location w.r.t. the map.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Point 2 is the ideal approach. But as the robot is running in simulation, a clever shortcut can be used: Instead of using sensor readings, one can use the simulator(gazebo)’s information of the robot pose for odometry. A closer look at the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mit-racecar&lt;/code&gt; code revealed that that’s exactly what’s being done in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gazebo_odometry.py&lt;/code&gt; script located in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;racecar_gazebo&lt;/code&gt; package.&lt;/p&gt;
+
+&lt;p&gt;Executing&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rosnode info /gazebo_odometry_node
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;revealed that this node is subscribing to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/gazebo/link_states&lt;/code&gt; topic which provides the robot pose information. It’s also publishing to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/tf&lt;/code&gt; topic, which is where the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;map--&amp;gt;odom&lt;/code&gt; transform is being broadcast. This is in line with what we saw in tf tree above.&lt;/p&gt;
+
+&lt;p&gt;So I made a slight modification to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gazebo_odometry.py&lt;/code&gt; to configure the tf tree for gmapping. After looking at the ROS wiki documentation for the &lt;strong&gt;slam_gmapping package&lt;/strong&gt;&lt;sup id=&quot;fnref:5&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:5&quot; class=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;, I found that for gmapping to run correctly, it needs an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;odom--&amp;gt;base_link--&amp;gt;laser&lt;/code&gt; transform. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gazebo_odometry.py&lt;/code&gt; node was written, (from what I understood), for navigation purposes. That’s why it transforms &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;map--&amp;gt;odom&lt;/code&gt;, instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;odom--&amp;gt;base_link&lt;/code&gt;. So I simply changed the parent link to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;odom&lt;/code&gt; and child link to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;base_link&lt;/code&gt; in the script and voila! We now have working SLAM!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/racecar1/gmapping.png&quot; alt=&quot;Gmapping&quot; class=&quot;border&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;map--&amp;gt;odom&lt;/code&gt; transform is now provided by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/slam_gmapping&lt;/code&gt; node. We can see the same by looking again at the tf tree:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/racecar1/frames2.png&quot; alt=&quot;TF&quot; class=&quot;border&quot; /&gt;&lt;/p&gt;
+
+&lt;p class=&quot;info&quot;&gt;Below is a scribd embed if you want to have a closer look at the final TF Tree.&lt;/p&gt;
+
+&lt;iframe class=&quot;scribd_iframe_embed&quot; title=&quot;MIT-racecar gmapping TF&quot; src=&quot;https://www.scribd.com/embeds/493778944/content?start_page=1&amp;amp;view_mode=scroll&amp;amp;access_key=key-pGyvLCwYtc4KjXpIb50o&quot; data-auto-height=&quot;true&quot; data-aspect-ratio=&quot;2.342857142857143&quot; scrolling=&quot;no&quot; id=&quot;doc_88947&quot; width=&quot;100%&quot; height=&quot;600&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;(function() { var scribd = document.createElement(&quot;script&quot;); scribd.type = &quot;text/javascript&quot;; scribd.async = true; scribd.src = &quot;https://www.scribd.com/javascripts/embed_code/inject.js&quot;; var s = document.getElementsByTagName(&quot;script&quot;)[0]; s.parentNode.insertBefore(scribd, s); })();&lt;/script&gt;
+
+&lt;p&gt;Finally, I ran the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;keyboard_teleop.py&lt;/code&gt; script using&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rosrun racecar_control keyboard_teleop.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;to teleoperate the racecar. Once a good map is obtained, it can be saved using&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rosrun map_server map_server mymap.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With this, we come to the end of this post. The key takeaway from this post is that &lt;strong&gt;TF transforms are an extremely important&lt;/strong&gt; part of ROS. It is vital that a ROS Developer be comfortable with interpreting the TF tree. To any beginner ROS users, I would recommend to always run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tf view_frames&lt;/code&gt; node and take a look at the TF tree when implementing someone else’s package.&lt;/p&gt;
+
+&lt;p&gt;Next I will be implementing the &lt;strong&gt;ROS Navigation Stack&lt;/strong&gt;&lt;sup id=&quot;fnref:6&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:6&quot; class=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt; on the mit-racecar robot. I will post here if I encounter any interesting problems.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://github.com/mit-racecar/racecar&quot; target=&quot;_blank&quot;&gt;racecar&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://github.com/mit-racecar/racecar&quot; target=&quot;_blank&quot;&gt;racecar_gazebo&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.ros.org/reps/rep-0105.html#relationship-between-frames&quot; target=&quot;_blank&quot;&gt;REP 105&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;http://wiki.ros.org/tf#static_transform_publisher&quot; target=&quot;_blank&quot;&gt;static_transform_publisher&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:5&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;http://wiki.ros.org/slam_gmapping&quot; target=&quot;_blank&quot;&gt;slam_gmapping&lt;/a&gt; &lt;a href=&quot;#fnref:5&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:6&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;http://wiki.ros.org/navigation&quot; target=&quot;_blank&quot;&gt;ROS Navigation Stack&lt;/a&gt; &lt;a href=&quot;#fnref:6&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Devansh Dhrafani</name><email>f20171569@hyderabad.bits-pilani.ac.in</email></author><category term="ROS" /><category term="Mobile Robot" /><summary type="html">For a recent project, I had to map an environment using the MIT-Racecar robot in Gazebo. This is a log of my progress implementing Simultaneous Localisation and Mapping (SLAM) on the MIT-Racecar bot. I encountered some interesting problems, and learnt a few things while solving them. In this short post, I will summarise the steps that I used to solve the problems and get gmapping to run on the racecar_gazebo simulator.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://devanshdhrafani.github.io/blog/assets/images/racecar1/gmapping.png" /><media:content medium="image" url="https://devanshdhrafani.github.io/blog/assets/images/racecar1/gmapping.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Mobile Robot 1: URDF, Sensors, Gazebo and Rviz</title><link href="http://localhost:4000/2020/11/01/diffdrive.html" rel="alternate" type="text/html" title="Mobile Robot 1: URDF, Sensors, Gazebo and Rviz" /><published>2020-11-01T00:00:00+05:30</published><updated>2020-11-01T00:00:00+05:30</updated><id>http://localhost:4000/2020/11/01/diffdrive</id><content type="html" xml:base="http://localhost:4000/2020/11/01/diffdrive.html">&lt;p&gt;Software simulation in ROS can help you learn about how to make robots “think.” It is a long way to go from a line following bot to a self-driving car!  This makes software development one of the hardest fields to explore for enthusiasts. This is where the Robot Operating System (ROS) comes in. The highly modular nature of ROS facilitates a developer to focus on their domain and use one of the many open-source ROS packages to fill in the gaps.&lt;/p&gt;
 
 &lt;p&gt;In this project, I developed a ROS package that implements SLAM and Autonomous Navigation on a custom 2 wheeled Differential Drive robot in Gazebo. Throughout the development of this project, I learnt several new ROS concepts which are essential to understand for any beginner. In these posts, I will summarise the steps that I followed (along with relevant links) and hopefully, by the end, you would have learnt something new.&lt;/p&gt;
 
@@ -130,4 +223,4 @@ Now let’s start Rviz:&lt;/p&gt;
       &lt;p&gt;&lt;a href=&quot;http://wiki.ros.org/roslaunch&quot; target=&quot;_blank&quot;&gt;ROS Launch Files&lt;/a&gt; &lt;a href=&quot;#fnref:5&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Devansh Dhrafani</name><email>f20171569@hyderabad.bits-pilani.ac.in</email></author><category term="ROS" /><category term="Mobile Robot" /><summary type="html">I developed a ROS package that implements SLAM and Autonomous Navigation on a custom 2 wheeled Differential Drive robot in Gazebo. Throughout the development of this project, I learnt several new ROS concepts which are essential to understand for any beginner. This post summarises the steps that I followed with relevant links for learning the same.</summary></entry></feed>
+&lt;/div&gt;</content><author><name>Devansh Dhrafani</name><email>f20171569@hyderabad.bits-pilani.ac.in</email></author><category term="ROS" /><category term="Mobile Robot" /><summary type="html">I developed a ROS package that implements SLAM and Autonomous Navigation on a custom 2 wheeled Differential Drive robot in Gazebo. Throughout the development of this project, I learnt several new ROS concepts which are essential to understand for any beginner. This post summarises the steps that I followed with relevant links for learning the same.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://devanshdhrafani.github.io/blog/assets/images/diffdrive/gazebo.png" /><media:content medium="image" url="https://devanshdhrafani.github.io/blog/assets/images/diffdrive/gazebo.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
