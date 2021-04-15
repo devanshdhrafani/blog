@@ -9,6 +9,15 @@
 .image--md {
   width: map-get($image, width);
 }
+
+.image--xxxl {
+  width: map-get($image, width-xxxl);
+}
+
+.image--xxl {
+  width: map-get($image, width-xxl);
+}
+
 .image--xl {
   width: map-get($image, width-xl);
 }
@@ -25,4 +34,9 @@
   float: right;
   padding-left: 1.5em;
   padding-right: 1.5em;
+}
+
+img[src$="centerme"] {
+  display:block;
+  margin: 0 auto;
 }
